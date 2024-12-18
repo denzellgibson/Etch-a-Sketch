@@ -1,7 +1,21 @@
+document.body.style.display = "flex";
+document.body.style.justifyContent = "center";
+
 const BlockContainer = document.querySelector("#block-container");
 BlockContainer.style.display = "flex";
 BlockContainer.style.justifyContent = "center";
-// BlockContainer.style.border = 'green solid';
+BlockContainer.style.alignItems = "center";
+BlockContainer.style.flexDirection = "column";
+BlockContainer.style.width = "960px";
+
+const CreateGridButton = document.createElement("button");
+CreateGridButton.innerHTML = "Adjust Grid Size";
+CreateGridButton.addEventListener("click", (e) => {
+    let squareNumber = prompt("Please input the number of squares per side.");
+    GridContainer.innerHTML = "";
+    SquareGridGeneration(squareNumber);
+});
+BlockContainer.prepend(CreateGridButton);
 
 const GridContainer = document.querySelector("#grid-container");
 GridContainer.style.display = "flex";
@@ -14,12 +28,12 @@ GridContainer.addEventListener("mouseover", (e) => {
     if (e.target.id === 'square') {
         e.target.style.background = 'red';
     }
-})
+});
 
-function SquareGridGeneration(GridHeight, GridWidth) {
+function SquareGridGeneration(GridHeight) {
     for (let i = 1; i <= GridHeight; i++) {
         const GridRow = CreateGridRow();
-        for (let j = 1; j <= GridWidth; j++) {
+        for (let j = 1; j <= GridHeight; j++) {
             const GridSquare = CreateSquare();
             GridRow.appendChild(GridSquare);
         }
@@ -29,10 +43,9 @@ function SquareGridGeneration(GridHeight, GridWidth) {
 
 function CreateSquare() {
     const GridSquare = document.createElement("div");
-    GridSquare.addEventListener
     GridSquare.style.display = "flex";
     GridSquare.style.flex = "1";
-    GridSquare.style.border = "black solid";
+    // GridSquare.style.border = "black solid";
     GridSquare.setAttribute('id', 'square');
     return GridSquare;
 }
