@@ -11,7 +11,15 @@ BlockContainer.style.width = "960px";
 const CreateGridButton = document.createElement("button");
 CreateGridButton.innerHTML = "Adjust Grid Size";
 CreateGridButton.addEventListener("click", (e) => {
-    let squareNumber = prompt("Please input the number of squares per side.");
+    let squareNumber = 0;
+    while (squareNumber < 1 || squareNumber > 100) {
+        squareNumber = prompt("Please input the number of squares per side (1 - 100).");
+        if (squareNumber == '' || squareNumber == null) {
+            return;
+        }
+        else if (squareNumber < 1 || squareNumber > 100) {
+            alert("Please pick a number between 1 - 100.")};
+    }
     GridContainer.innerHTML = "";
     SquareGridGeneration(squareNumber);
 });
